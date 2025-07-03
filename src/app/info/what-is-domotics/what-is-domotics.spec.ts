@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WhatIsDomotics } from './what-is-domotics';
+import { WhatIsDomoticsComponent } from './what-is-domotics';
 
 describe('WhatIsDomotics', () => {
-  let component: WhatIsDomotics;
-  let fixture: ComponentFixture<WhatIsDomotics>;
+  let component: WhatIsDomoticsComponent;
+  let fixture: ComponentFixture<WhatIsDomoticsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WhatIsDomotics]
+      imports: [WhatIsDomoticsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WhatIsDomotics);
+    fixture = TestBed.createComponent(WhatIsDomoticsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

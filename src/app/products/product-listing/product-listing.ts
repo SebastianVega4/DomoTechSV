@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
-import { ProductService } from '../../core/services/product.service';
+import { ProductCardComponent } from '../../shared/components/product-card/product-card';
+import { ProductService } from '../../core/services/product';
 import { Product } from '../../core/models/product.model';
 
 @Component({
   selector: 'app-product-listing',
   standalone: true,
   imports: [CommonModule, ProductCardComponent],
-  templateUrl: './product-listing.component.html',
-  styleUrls: ['./product-listing.component.scss']
+  templateUrl: './product-listing.html',
+  styleUrls: ['./product-listing.scss']
 })
 export class ProductListingComponent implements OnInit {
   products: Product[] = [];
@@ -26,7 +26,7 @@ export class ProductListingComponent implements OnInit {
     this.route.params.subscribe(params => {
       const nicho = params['nicho'];
       this.categoryName = this.getCategoryName(nicho);
-      
+
       this.productService.getProducts(nicho).subscribe(products => {
         this.products = products;
         this.isLoading = false;

@@ -1,9 +1,13 @@
-/* Importar Bootstrap */
-@import 'bootstrap/scss/bootstrap';
+// Configuración inicial
+@use 'sass:math';
+@use 'sass:color';
+
+// Importación de Bootstrap
+@use 'bootstrap/scss/bootstrap' as *;
 
 /* Estilos globales */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: $font-family-base;
   margin: 0;
   padding: 0;
   color: #333;

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { AchievementsService } from '../../core/services/achievements.service';
+import { CommonModule } from '@angular/common';
+import { AchievementsService } from '../../core/services/achievements';
 
 @Component({
   selector: 'app-achievements',
   standalone: true,
-  templateUrl: './achievements.component.html',
-  styleUrls: ['./achievements.component.scss']
+  imports: [CommonModule],
+  templateUrl: './achievements.html',
+  styleUrls: ['./achievements.scss']
 })
 export class AchievementsComponent {
   achievements: any = {};
