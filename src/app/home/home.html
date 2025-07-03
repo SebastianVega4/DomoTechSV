@@ -1,0 +1,23 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Bienvenido a DomoTechSV</h1>
+    <p class="tagline">Tu hogar inteligente, a tu alcance</p>
+    <div class="cta-buttons">
+      <a routerLink="/productos/domotica" class="btn btn-primary">Explora Productos Domóticos</a>
+      <a routerLink="/productos/tecnologia" class="btn btn-secondary">Ver Accesorios Tecnológicos</a>
+    </div>
+  </div>
+</section>
+
+<section class="featured-products">
+  <h2>Productos Destacados</h2>
+  <div class="products-grid">
+    <app-product-card *ngFor="let product of featuredProducts" [product]="product"></app-product-card>
+  </div>
+</section>
+
+<section class="about-section">
+  <h2>¿Qué es DomoTechSV?</h2>
+  <p>DomoTechSV es tu solución integral para la automatización del hogar. Ofrecemos productos de domótica de alta calidad que te permiten controlar y monitorear tu hogar desde cualquier lugar.</p>
+  <a routerLink="/que-es-domotica" class="btn btn-outline">Aprende más sobre domótica</a>
+</section>

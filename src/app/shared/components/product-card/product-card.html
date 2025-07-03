@@ -1,0 +1,28 @@
+<div class="product-card">
+  <div class="product-image">
+    <img [src]="product.imagenes[0]" [alt]="product.nombre">
+    <div *ngIf="product.descuento > 0" class="discount-badge">
+      -{{ product.descuento * 100 | number:'1.0-0' }}%
+    </div>
+    <div *ngIf="product.estado === 'agotado'" class="out-of-stock">
+      ¡Agotado!
+    </div>
+  </div>
+  <div class="product-info">
+    <h3 class="product-name">{{ product.nombre }}</h3>
+    <p class="product-description">{{ product.descripcion | truncate:100 }}</p>
+    
+    <div class="product-pricing">
+      <div *ngIf="product.descuento > 0" class="original-price">
+        ${{ product.precio | number:'1.2-2' }}
+      </div>
+      <div class="final-price">
+        ${{ (product.precio * (1 - product.descuento)) | number:'1.2-2' }}
+      </div>
+    </div>
+    
+    <div class="product-actions">
+      <a [routerLink]="['/producto', product.id]" class="btn-details">Ver detalles</a>
+    </div>
+  </div>
+</div>

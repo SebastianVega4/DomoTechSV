@@ -1,0 +1,79 @@
+<div class="product-detail-container">
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando producto...</p>
+  </div>
+
+  <div *ngIf="!isLoading && product" class="product-detail">
+    <div class="product-gallery">
+      <div class="main-image">
+        <img [src]="product.imagenes[currentImageIndex]" [alt]="product.nombre">
+      </div>
+      <div class="thumbnails">
+        <div 
+          *ngFor="let image of product.imagenes; let i = index" 
+          class="thumbnail" 
+          [class.active]="i === currentImageIndex"
+          (click)="changeImage(i)">
+          <img [src]="image" [alt]="product.nombre + ' thumbnail ' + (i + 1)">
+        </div>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <h1>{{ product.nombre }}</h1>
+      <div class="product-meta">
+        <span class="brand">{{ product.marca }}</span>
+        <span class="model">{{ product.modelo }}</span>
+      </div>
+
+      <div class="product-pricing">
+        <div *ngIf="product.descuento > 0" class="original-price">
+          <span class="price-before">${{ product.precio | number:'1.2-2' }}</span>
+          <span class="discount-percent">-{{ product.descuento * 100 | number:'1.0-0' }}%</span>
+        </div>
+        <div class="final-price">
+          ${{ getFinalPrice() | number:'1.2-2' }}
+        </div>
+      </div>
+
+      <div class="product-status">
+        <span [class.in-stock]="product.estado === 'activo'" 
+              [class.out-of-stock]="product.estado === 'agotado'">
+          {{ product.estado === 'activo' ? 'Disponible' : 'Agotado' }}
+        </span>
+      </div>
+
+      <div class="product-description">
+        <h3>Descripción</h3>
+        <p>{{ product.descripcion }}</p>
+      </div>
+
+      <div class="product-features">
+        <h3>Características</h3>
+        <ul>
+          <li *ngFor="let feature of product.caracteristicas">{{ feature }}</li>
+        </ul>
+      </div>
+
+      <div class="product-package">
+        <h3>Contenido del paquete</h3>
+        <ul>
+          <li *ngFor="let item of product.paquete">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="product-actions">
+        <a 
+          *ngIf="product.estado === 'activo'"
+          [href]="product.link" 
+          target="_blank"
+          class="btn-whatsapp">
+          Comprar por WhatsApp
+        </a>
+        <a routerLink="/productos/{{ product.nicho }}" class="btn-back">
+          Volver a productos
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

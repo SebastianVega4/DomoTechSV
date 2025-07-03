@@ -1,0 +1,39 @@
+<section class="achievements-section">
+  <h1>Nuestros Logros y Estadísticas</h1>
+  
+  <div class="achievements-content">
+    <div class="stats-section">
+      <h2>Estadísticas Clave</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">{{ achievements.instalaciones_completadas || 150 }}</div>
+          <div class="stat-label">Instalaciones Completadas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{{ achievements.ventas_realizadas || 500 }}</div>
+          <div class="stat-label">Ventas Realizadas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{{ achievements.clientes_satisfechos || 480 }}</div>
+          <div class="stat-label">Clientes Satisfechos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="awards-section">
+      <h2>Reconocimientos y Premios</h2>
+      <div class="awards-list">
+        <div *ngFor="let award of achievements.reconocimientos || []" class="award-card">
+          <h3>{{ award.nombre }}</h3>
+          <div class="award-year">{{ award.anio }}</div>
+          <p>{{ award.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <p>¿Quieres ser parte de nuestra historia?</p>
+      <a routerLink="/productos/domotica" class="cta-button">Explora nuestros Productos</a>
+    </div>
+  </div>
+</section>
