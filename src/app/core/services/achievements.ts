@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, doc, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AchievementsService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: Firestore) {}
 
   getAchievements(): Observable<any> {
-    return this.firestore.collection('logros').doc('estadisticas').valueChanges();
+    const achievementsRef = doc(this.firestore, 'logros/estadisticas');
+    return docData(achievementsRef);
   }
 }

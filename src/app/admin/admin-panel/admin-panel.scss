@@ -1,0 +1,23 @@
+.admin-panel {
+  padding: 2rem;
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .product-management {
+    .product-forms {
+      display: grid;
+      gap: 2rem;
+      
+      .product-edit {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        border-radius: 4px;
+      }
+    }
+  }
+}

@@ -1,5 +1,4 @@
-export interface Product {
-  id?: string;
+export interface BaseProduct {
   nombre: string;
   descripcion: string;
   caracteristicas: string[];
@@ -18,3 +17,9 @@ export interface Product {
   destacado: boolean;
   link: string;
 }
+
+export interface Product extends BaseProduct {
+  id: string;
+}
+
+export type NewProduct = BaseProduct;

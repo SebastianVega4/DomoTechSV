@@ -1,0 +1,29 @@
+<div class="admin-panel">
+  <header>
+    <h1>Panel de Administración</h1>
+    <button (click)="logout()">Cerrar Sesión</button>
+  </header>
+
+  <section class="product-management">
+    <h2>Gestión de Productos</h2>
+    
+    <div class="product-forms">
+      <!-- Formulario para añadir nuevo producto -->
+      <h3>Añadir Nuevo Producto</h3>
+      <app-product-form 
+        [product]="newProduct"
+        (submitProduct)="addProduct($event)">
+      </app-product-form>
+      
+      <!-- Lista de productos existentes para editar -->
+      <h3>Editar Productos Existentes</h3>
+      <div *ngFor="let product of products" class="product-edit">
+        <app-product-form 
+          [product]="product"
+          (submitProduct)="updateProduct($event)">
+        </app-product-form>
+        <button (click)="deleteProduct(product.id)">Eliminar</button>
+      </div>
+    </div>
+  </section>
+</div>

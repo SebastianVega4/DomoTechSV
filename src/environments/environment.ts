@@ -1,11 +1,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "TU_SENDER_ID",
-    appId: "TU_APP_ID"
+    apiKey: "AIzaSyC9STkLXflVVj5cQIKphJq4_kyDaqK105g",
+    authDomain: "domotechsv-90961.firebaseapp.com",
+    projectId: "domotechsv-90961",
+    storageBucket: "domotechsv-90961.firebasestorage.app",
+    messagingSenderId: "331679421186",
+    appId: "1:331679421186:web:8e3f83d9c324b56120681b",
+    measurementId: "G-X6YW70T8HD"
   }
 };

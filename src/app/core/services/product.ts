@@ -1,70 +1,53 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, collection, collectionData, doc, docData, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-export interface Product {
-  id?: string;
-  nombre: string;
-  descripcion: string;
-  caracteristicas: string[];
-  paquete: string[];
-  descuento: number;
-  precio: number;
-  estado: string;
-  nicho: string;
-  categoria: string;
-  stock: number;
-  imagenes: string[];
-  marca: string;
-  modelo: string;
-  url_video_review?: string;
-  fecha_publicacion: any;
-  destacado: boolean;
-  link: string;
-}
+import { Product, NewProduct } from '../models/product.model';
+import { query, where } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: Firestore) {}
 
-  getProducts(nicho?: string, categoria?: string, searchTerm?: string): Observable<Product[]> {
-    let query = this.firestore.collection<Product>('productos', ref => {
-      let queryRef: any = ref;
-      if (nicho) {
-        queryRef = queryRef.where('nicho', '==', nicho);
-      }
-      if (categoria) {
-        queryRef = queryRef.where('categoria', '==', categoria);
-      }
-      return queryRef;
-    });
+  getProducts(nicho?: string, categoria?: string): Observable<Product[]> {
+    const productsRef = collection(this.firestore, 'productos');
+    let q = query(productsRef);
+    
+    if (nicho) {
+      q = query(productsRef, where('nicho', '==', nicho));
+    }
+    if (categoria) {
+      q = query(productsRef, where('categoria', '==', categoria));
+    }
 
-    return query.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Product;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
+    return collectionData(q, { idField: 'id' }) as Observable<Product[]>;
   }
 
   getFeaturedProducts(): Observable<Product[]> {
-    return this.firestore.collection<Product>('productos', ref => 
-      ref.where('destacado', '==', true).limit(6)
-    ).valueChanges({ idField: 'id' });
+    const productsRef = collection(this.firestore, 'productos');
+    const q = query(productsRef, where('destacado', '==', true));
+    return collectionData(q, { idField: 'id' }) as Observable<Product[]>;
   }
 
   getProductById(id: string): Observable<Product> {
-    return this.firestore.collection('productos').doc<Product>(id).valueChanges().pipe(
-      map(product => {
-        if (product) {
-          return { ...product, id } as Product;
-        }
-        throw new Error('Product not found');
-      })
-    );
+    const productRef = doc(this.firestore, `productos/${id}`);
+    return docData(productRef, { idField: 'id' }) as Observable<Product>;
+  }
+
+  async addProduct(productData: NewProduct): Promise<Product> {
+    const productsRef = collection(this.firestore, 'productos');
+    const docRef = await addDoc(productsRef, productData);
+    return { id: docRef.id, ...productData };
+  }
+
+  async updateProduct(id: string, productData: Partial<Product>): Promise<void> {
+    const productRef = doc(this.firestore, `productos/${id}`);
+    await updateDoc(productRef, productData);
+  }
+
+  async deleteProduct(id: string): Promise<void> {
+    const productRef = doc(this.firestore, `productos/${id}`);
+    await deleteDoc(productRef);
   }
 }
