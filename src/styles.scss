@@ -1,43 +1,159 @@
 // Configuración inicial
 @use 'sass:math';
 @use 'sass:color';
+@use 'sass:map';
 
 // Importación de Bootstrap
 @use 'bootstrap/scss/bootstrap' as *;
+
+// Variables de tema domótico
+$primary: #2c3e50;
+$secondary: #3498db;
+$accent: #2ecc71;
+$dark: #1a252f;
+$light: #ecf0f1;
+$tech-gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+
+// Tipografía moderna
+$font-family-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-tech: 'Orbitron', 'Segoe UI', sans-serif;
 
 /* Estilos globales */
 body {
   font-family: $font-family-base;
   margin: 0;
   padding: 0;
-  color: #333;
+  color: $primary;
   line-height: 1.6;
+  background-color: $light;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #2c3e50;
+  color: $primary;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  @include media-breakpoint-down(md) {
+    font-size: 2rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  @include media-breakpoint-down(md) {
+    font-size: 1.75rem;
+  }
 }
 
 a {
   text-decoration: none;
-  color: #3498db;
-  transition: color 0.3s;
+  color: $secondary;
+  transition: all 0.3s ease;
 
   &:hover {
-    color: #2980b9;
+    color: darken($secondary, 15%);
   }
 }
 
+// Efectos de tarjetas y elementos interactivos
+.card-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+}
+
+// Container moderno
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
 }
 
-/* Clases utilitarias */
-.text-center {
-  text-align: center;
+// Botones temáticos
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::after {
+    transform: translateX(0);
+  }
+
+  &-primary {
+    background: $tech-gradient;
+    color: white;
+
+    &:hover {
+      background: linear-gradient(135deg, darken($secondary, 10%) 0%, darken($primary, 10%) 100%);
+    }
+  }
+
+  &-secondary {
+    background-color: $accent;
+    color: white;
+
+    &:hover {
+      background-color: darken($accent, 10%);
+    }
+  }
+
+  &-outline {
+    background-color: transparent;
+    border: 2px solid $secondary;
+    color: $secondary;
+
+    &:hover {
+      background-color: $secondary;
+      color: white;
+    }
+  }
 }
+
+// Efectos de carga modernos
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse-effect {
+  animation: pulse 2s infinite;
+}
+
+// Clases utilitarias mejoradas
+.text-center { text-align: center; }
+.text-tech { font-family: $font-tech; }
 
 .mt-1 { margin-top: 0.25rem; }
 .mt-2 { margin-top: 0.5rem; }
@@ -50,3 +166,16 @@ a {
 .mb-3 { margin-bottom: 1rem; }
 .mb-4 { margin-bottom: 1.5rem; }
 .mb-5 { margin-bottom: 3rem; }
+
+// Responsive utilities
+@include media-breakpoint-down(lg) {
+  .lg\:text-center { text-align: center; }
+}
+
+@include media-breakpoint-down(md) {
+  .md\:flex-column { flex-direction: column; }
+}
+
+@include media-breakpoint-down(sm) {
+  .sm\:text-sm { font-size: 0.875rem; }
+}

@@ -1,25 +1,56 @@
+$primary: #2c3e50;
+$secondary: #3498db;
+$accent: #2ecc71;
+$dark: #1a252f;
+$light: #ecf0f1;
+$tech-gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+$font-family-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-tech: 'Orbitron', 'Segoe UI', sans-serif;
+
+
+@use 'sass:math';
+@use 'sass:color';
+@use 'sass:map';
+
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #2c3e50;
+  background: $tech-gradient;
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 
   .logo-container {
     .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
       .logo-text {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         font-weight: bold;
+        font-family: $font-tech;
+        letter-spacing: 1px;
+        background: linear-gradient(to right, white, #a1c4fd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
     }
   }
 
   .nav-menu {
+
     .nav-list {
       list-style: none;
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
       margin: 0;
       padding: 0;
 
@@ -28,21 +59,54 @@
           color: white;
           text-decoration: none;
           padding: 0.5rem 1rem;
-          border-radius: 4px;
+          border-radius: 50px;
           transition: all 0.3s ease;
           font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          font-size: 0.95rem;
 
           &:hover {
-            background-color: #34495e;
+            background-color: rgba(255,255,255,0.2);
             transform: translateY(-2px);
           }
 
           &.active {
-            background-color: #3498db;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: $accent;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-weight: 600;
+          }
+
+          i {
+            font-size: 1.1rem;
           }
         }
       }
+    }
+  }
+
+  // Menú hamburguesa para móviles
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  &.mobile-open {
+    .nav-list {
+      display: flex !important;
+      flex-direction: column;
+      background: $dark;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
   }
 }

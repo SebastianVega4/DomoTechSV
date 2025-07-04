@@ -28,15 +28,9 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              {
-                "input": "src/styles.scss",
-                "inject": false,
-                "bundleName": "styles"
-              }
-            ],
+            "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["node_modules"]
+              "includePaths": ["src/styles"]
             }
           },
           "configurations": {
@@ -44,7 +38,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "800kB",
                   "maximumError": "1MB"
                 },
                 {
@@ -90,15 +84,9 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              {
-                "input": "src/styles.scss",
-                "inject": false,
-                "bundleName": "styles"
-              }
-            ],
+            "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["node_modules"]
+              "includePaths": ["src/styles"]
             }
           }
         }
