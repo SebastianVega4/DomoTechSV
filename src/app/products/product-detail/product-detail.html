@@ -37,9 +37,8 @@
       </div>
 
       <div class="product-status">
-        <span [class.in-stock]="product.estado === 'activo'" 
-              [class.out-of-stock]="product.estado === 'agotado'">
-          {{ product.estado === 'activo' ? 'Disponible' : 'Agotado' }}
+        <span>
+          {{ product.stock != 0 ? 'Disponible' : 'Agotado' }}
         </span>
       </div>
 
@@ -64,7 +63,7 @@
 
       <div class="product-actions">
         <a 
-          *ngIf="product.estado === 'activo'"
+          *ngIf="product.stock != 0"
           [href]="product.link" 
           target="_blank"
           class="btn-whatsapp">
