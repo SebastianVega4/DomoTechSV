@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ProductFormComponent } from '../../shared/components/product-form/product-form';
 import { ProductService } from '../../core/services/product';
 import { AuthService } from '../../core/services/auth';
@@ -8,13 +9,17 @@ import { Product, NewProduct } from '../../core/models/product.model';
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [CommonModule, ProductFormComponent],
+  imports: [CommonModule, FormsModule, ProductFormComponent],
   templateUrl: './admin-panel.html',
   styleUrls: ['./admin-panel.scss']
 })
 export class AdminPanelComponent {
   newProduct: NewProduct = this.getEmptyProduct();
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  selectedProductId: string | null = null;
+  showAddForm = false;
+  searchTerm = '';
 
   constructor(
     public authService: AuthService, 
@@ -47,6 +52,7 @@ export class AdminPanelComponent {
   async loadProducts() {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
+      this.filteredProducts = [...products];
     });
   }
 
@@ -79,6 +85,27 @@ export class AdminPanelComponent {
       console.error('Error deleting product:', error);
     }
   }
+
+  filterProducts() {
+    if (!this.searchTerm) {
+      this.filteredProducts = [...this.products];
+      return;
+    }
+    
+    const term = this.searchTerm.toLowerCase();
+    this.filteredProducts = this.products.filter(p => 
+      p.nombre.toLowerCase().includes(term) || 
+      p.categoria.toLowerCase().includes(term) ||
+      p.descripcion.toLowerCase().includes(term)
+    );
+  }
+
+  toggleProductDetail(productId: string) {
+  // Si ya está seleccionado, no hagas nada (para evitar cerrarlo al hacer clic en el formulario)
+  if (this.selectedProductId === productId) return;
+  
+  this.selectedProductId = productId;
+}
 
   logout() {
     this.authService.logout();

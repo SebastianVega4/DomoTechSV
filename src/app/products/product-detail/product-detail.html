@@ -1,5 +1,6 @@
 <div class="product-detail-container">
   <div *ngIf="isLoading" class="loading">
+    <i class="fas fa-cog"></i>
     <p>Cargando producto...</p>
   </div>
 
@@ -37,8 +38,9 @@
       </div>
 
       <div class="product-status">
-        <span>
-          {{ product.stock != 0 ? 'Disponible' : 'Agotado' }}
+        <span class="stock-badge" [class.in-stock]="product.stock > 0" [class.out-of-stock]="product.stock <= 0">
+          <i class="fas" [class.fa-check-circle]="product.stock > 0" [class.fa-times-circle]="product.stock <= 0"></i>
+          {{ product.stock > 0 ? 'Disponible' : 'Agotado' }}
         </span>
       </div>
 
@@ -63,14 +65,14 @@
 
       <div class="product-actions">
         <a 
-          *ngIf="product.stock != 0"
+          *ngIf="product.stock > 0"
           [href]="product.link" 
           target="_blank"
           class="btn-whatsapp">
-          Comprar por WhatsApp
+          <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
         </a>
         <a routerLink="/productos/{{ product.nicho }}" class="btn-back">
-          Volver a productos
+          <i class="fas fa-arrow-left"></i> Volver a productos
         </a>
       </div>
     </div>

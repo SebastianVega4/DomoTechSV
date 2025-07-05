@@ -270,4 +270,13 @@ app-product-card {
       }
     }
   }
+  router-outlet + * {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+  @include bs.media-breakpoint-down(lg) {
+    padding-top: 60px; // Ajuste para móviles
+  }
+}
 }

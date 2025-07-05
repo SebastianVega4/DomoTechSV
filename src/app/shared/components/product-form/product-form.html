@@ -79,7 +79,9 @@
       <input type="text" [(ngModel)]="product.caracteristicas[i]" [name]="'feature'+i">
       <button type="button" (click)="removeFeature(i)">×</button>
     </div>
-    <button type="button" (click)="addFeature()">+ Añadir Característica</button>
+    <button type="button" (click)="addFeature()">
+      <i class="fas fa-plus"></i> Añadir Característica
+    </button>
   </div>
 
   <div class="form-group">
@@ -88,7 +90,9 @@
       <input type="text" [(ngModel)]="product.paquete[i]" [name]="'item'+i">
       <button type="button" (click)="removePackageItem(i)">×</button>
     </div>
-    <button type="button" (click)="addPackageItem()">+ Añadir Item</button>
+    <button type="button" (click)="addPackageItem()">
+      <i class="fas fa-plus"></i> Añadir Item
+    </button>
   </div>
 
   <div class="form-group">
@@ -97,15 +101,17 @@
       <input type="url" [(ngModel)]="product.imagenes[i]" [name]="'image'+i">
       <button type="button" (click)="removeImage(i)">×</button>
     </div>
-    <button type="button" (click)="addImage()">+ Añadir Imagen</button>
+    <button type="button" (click)="addImage()">
+      <i class="fas fa-plus"></i> Añadir Imagen
+    </button>
   </div>
 
-  <div class="form-group">
-    <label>
-      <input type="checkbox" [(ngModel)]="product.destacado" name="destacado">
-      Producto Destacado
-    </label>
+  <div class="form-group checkbox-group">
+    <input type="checkbox" id="destacado" [(ngModel)]="product.destacado" name="destacado">
+    <label for="destacado">Producto Destacado</label>
   </div>
 
-  <button type="submit" class="submit-btn">Guardar Producto</button>
+  <button type="submit" class="submit-btn">
+    <i class="fas fa-save"></i> Guardar Producto
+  </button>
 </form>

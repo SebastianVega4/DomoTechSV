@@ -15,7 +15,7 @@ export class ProductFormComponent {
   @Output() submitProduct = new EventEmitter<Product | NewProduct>();
   
   nichos = ['domotica', 'tecnologia', 'segunda-mano'];
-  categorias = ['Aistentes', 'TomaCorriente','Interruptor', 'Iluminacion', 'Pin', 'Rele', 'Reloj', 'Control_Remoto', 'Audifonos', 'Airpots', 'Adaptador'];
+  categorias = ['Aistentes', 'TomaCorriente','Interruptor', 'Iluminacion', 'Pin', 'Rele', 'Reloj', 'Control_Remoto', 'Audifonos', 'Airpots', 'Adaptador', 'Mause', 'Otro'];
 
   submit() {
     this.submitProduct.emit(this.product);

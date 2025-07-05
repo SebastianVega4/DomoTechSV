@@ -2,11 +2,13 @@
   <h1>{{ categoryName }}</h1>
   
   <div *ngIf="isLoading" class="loading">
+    <div class="loading-icon"></div>
     <p>Cargando productos...</p>
   </div>
 
   <div *ngIf="!isLoading && products.length === 0" class="no-products">
-    <p>No hay productos disponibles en esta categoría.</p>
+    <p>No encontramos productos en esta categoría</p>
+    <a routerLink="/productos" class="browse-link">Explorar todos los productos</a>
   </div>
 
   <div class="products-grid">

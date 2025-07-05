@@ -1,23 +1,184 @@
+@use "sass:color";
+@use "bootstrap/scss/bootstrap" as bs;
+
+$prefix: "bs-";
+$enable-dark-mode: false;
+
+// Define tus variables personalizadas
+$custom-primary: #2c3e50;
+$custom-secondary: #3498db;
+$custom-accent: #2ecc71;
+$custom-dark: #1a252f;
+$custom-light: #ecf0f1;
+$custom-font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+// Sobrescribe variables de Bootstrap ANTES de importar
+$primary: $custom-primary;
+$secondary: $custom-secondary;
+$dark: $custom-dark;
+$font-family-base: $custom-font-family;
+$accent: #2ecc71 !default;
+$light: #ecf0f1 !default;
+
+// Variables derivadas
+$tech-gradient: linear-gradient(135deg, $secondary 0%, $primary 100%);
+
+// Tipografía
+$font-tech: 'Orbitron', 'Segoe UI', sans-serif;
+
 .admin-panel {
-  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
   
+  // Efecto tecnológico de fondo
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba($secondary, 0.05) 0%, transparent 25%),
+      radial-gradient(circle at 80% 70%, rgba($accent, 0.05) 0%, transparent 25%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  .product-management {
-    .product-forms {
-      display: grid;
-      gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba($primary, 0.1);
+    
+    h1 {
+      color: $primary;
+      font-family: $font-tech;
+      letter-spacing: 1px;
+      margin: 0;
+      font-size: 2rem;
+    }
+    
+    button {
+      background: $tech-gradient;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       
-      .product-edit {
-        border: 1px solid #ddd;
-        padding: 1rem;
-        border-radius: 4px;
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba($secondary, 0.3);
+      }
+      
+      i {
+        font-size: 1rem;
       }
     }
+  }
+
+  .product-management {
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .search-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba($primary, 0.2);
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $secondary;
+        box-shadow: 0 0 0 3px rgba($secondary, 0.2);
+      }
+    }
+  }
+
+  .product-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    &.selected {
+      border-left: 4px solid $accent;
+      background: rgba($accent, 0.05);
+    }
+
+    .product-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+
+      .product-name {
+        flex: 1;
+        font-weight: 600;
+        color: $primary;
+      }
+
+      .product-price {
+        font-weight: 700;
+        color: $secondary;
+      }
+
+      .product-category {
+        background: rgba($accent, 0.1);
+        color: $accent;
+        padding: 0.25rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+      }
+    }
+
+    .product-detail {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba($primary, 0.1);
+      pointer-events: auto;
+    }
+    form, input, textarea, select, button {
+    cursor: default;
+  }
+  }
+
+  .product-form-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
   }
 }

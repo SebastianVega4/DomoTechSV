@@ -1,55 +1,153 @@
+@use "sass:color";
+@use "bootstrap/scss/bootstrap" as bs;
+
+$prefix: "bs-";
+$enable-dark-mode: false;
+
+// Define tus variables personalizadas
+$custom-primary: #2c3e50;
+$custom-secondary: #3498db;
+$custom-accent: #2ecc71;
+$custom-dark: #1a252f;
+$custom-light: #ecf0f1;
+$custom-font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+// Sobrescribe variables de Bootstrap ANTES de importar
+$primary: $custom-primary;
+$secondary: $custom-secondary;
+$dark: $custom-dark;
+$font-family-base: $custom-font-family;
+$accent: #2ecc71 !default;
+$light: #ecf0f1 !default;
+
+// Variables derivadas
+$tech-gradient: linear-gradient(135deg, $secondary 0%, $primary 100%);
+
+// Tipografía
+$font-tech: 'Orbitron', 'Segoe UI', sans-serif;
+
 .product-detail-container {
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+  
+  // Efecto tecnológico de fondo
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba($secondary, 0.05) 0%, transparent 25%),
+      radial-gradient(circle at 80% 70%, rgba($accent, 0.05) 0%, transparent 25%);
+    pointer-events: none;
+    z-index: -1;
+  }
 
   .loading {
     text-align: center;
-    padding: 2rem;
-    color: #7f8c8d;
+    padding: 3rem;
+    color: $secondary;
+    font-size: 1.2rem;
+    
+    i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
   .product-detail {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-
-    @media (max-width: 768px) {
+    gap: 3rem;
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    
+    @include bs.media-breakpoint-down(md) {
       grid-template-columns: 1fr;
+      padding: 2rem;
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: $tech-gradient;
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+      opacity: 0.1;
     }
   }
 
   .product-gallery {
     .main-image {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      background: $light;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      
       img {
         width: 100%;
         height: auto;
-        border-radius: 8px;
+        max-height: 500px;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+        
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
 
     .thumbnails {
       display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
 
       .thumbnail {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border: 2px solid transparent;
-        border-radius: 4px;
+        border-radius: 8px;
         overflow: hidden;
         cursor: pointer;
-        transition: border-color 0.3s;
-
+        transition: all 0.3s ease;
+        background: $light;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
         &.active {
-          border-color: #3498db;
+          border-color: $accent;
+          transform: translateY(-5px);
+          box-shadow: 0 5px 10px rgba($accent, 0.2);
         }
 
         img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
+          padding: 0.5rem;
         }
       }
     }
@@ -58,118 +156,207 @@
   .product-info {
     h1 {
       margin-top: 0;
-      color: #2c3e50;
+      color: $primary;
+      font-family: $font-tech;
+      letter-spacing: 1px;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
     .product-meta {
-      color: #7f8c8d;
-      margin-bottom: 1rem;
-
+      color: lighten($dark, 20%);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      
       .brand {
         font-weight: bold;
-        margin-right: 0.5rem;
+        color: $secondary;
+        background: rgba($secondary, 0.1);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+      }
+      
+      .model {
+        background: rgba($accent, 0.1);
+        color: $accent;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
       }
     }
 
     .product-pricing {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba($light, 0.5);
+      border-radius: 10px;
 
       .original-price {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1rem;
         margin-bottom: 0.5rem;
 
         .price-before {
           text-decoration: line-through;
           color: #95a5a6;
+          font-size: 1.2rem;
         }
 
         .discount-percent {
           background-color: #e74c3c;
           color: white;
-          padding: 0.25rem 0.5rem;
-          border-radius: 4px;
-          font-size: 0.875rem;
+          padding: 0.3rem 0.8rem;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          font-weight: bold;
         }
       }
 
       .final-price {
-        font-size: 1.75rem;
+        font-size: 2.2rem;
         font-weight: bold;
-        color: #2c3e50;
+        color: $primary;
+        font-family: $font-tech;
       }
     }
 
     .product-status {
-      margin-bottom: 1.5rem;
-
-      span {
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
+      margin-bottom: 2rem;
+      
+      .stock-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
         font-weight: bold;
-
+        
         &.in-stock {
-          background-color: #d4edda;
-          color: #155724;
+          background-color: rgba($accent, 0.1);
+          color: darken($accent, 15%);
+          
+          i {
+            color: $accent;
+          }
         }
 
         &.out-of-stock {
-          background-color: #f8d7da;
-          color: #721c24;
+          background-color: rgba(#e74c3c, 0.1);
+          color: darken(#e74c3c, 15%);
+          
+          i {
+            color: #e74c3c;
+          }
         }
       }
     }
 
-    .product-description, .product-features, .product-package {
-      margin-bottom: 1.5rem;
+    .product-description, 
+    .product-features, 
+    .product-package {
+      margin-bottom: 2rem;
 
       h3 {
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
+        color: $primary;
+        font-family: $font-tech;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        position: relative;
+        display: inline-block;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 40px;
+          height: 3px;
+          background: $accent;
+        }
       }
 
       p, ul {
         margin: 0;
-        color: #34495e;
+        color: lighten($dark, 15%);
+        line-height: 1.8;
       }
 
       ul {
         padding-left: 1.5rem;
+        
+        li {
+          margin-bottom: 0.5rem;
+          position: relative;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            left: -1.2rem;
+            top: 0.7rem;
+            width: 6px;
+            height: 6px;
+            background: $accent;
+            border-radius: 50%;
+          }
+        }
       }
     }
 
     .product-actions {
       display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
 
       .btn-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
         background-color: #25D366;
         color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 4px;
+        padding: 1rem 2rem;
+        border-radius: 50px;
         text-decoration: none;
         font-weight: bold;
-        transition: background-color 0.3s;
-
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(#25D366, 0.3);
+        
         &:hover {
-          background-color: #128C7E;
+          background-color: darken(#25D366, 5%);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(#25D366, 0.4);
+        }
+        
+        i {
+          font-size: 1.2rem;
         }
       }
 
       .btn-back {
-        border: 1px solid #3498db;
-        color: #3498db;
-        padding: 0.75rem 1.5rem;
-        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 2px solid $secondary;
+        color: $secondary;
+        padding: 1rem 2rem;
+        border-radius: 50px;
         text-decoration: none;
         font-weight: bold;
-        transition: all 0.3s;
-
+        transition: all 0.3s ease;
+        
         &:hover {
-          background-color: #3498db;
+          background-color: $secondary;
           color: white;
+          transform: translateY(-3px);
+          box-shadow: 0 5px 15px rgba($secondary, 0.3);
+        }
+        
+        i {
+          font-size: 1rem;
         }
       }
     }

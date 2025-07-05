@@ -1,31 +1,45 @@
 <section class="achievements-section">
   <h1>Nuestros Logros</h1>
   
-  <div *ngIf="achievements">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3>{{ achievements.clientes }}+</h3>
-        <p>Clientes satisfechos</p>
-      </div>
-      <div class="stat-card">
-        <h3>{{ achievements.proyectos }}+</h3>
-        <p>Proyectos completados</p>
-      </div>
-      <div class="stat-card">
-        <h3>{{ achievements.productosVendidos }}+</h3>
-        <p>Productos vendidos</p>
-      </div>
-      <div class="stat-card">
-        <h3>{{ achievements.satisfaccion }}%</h3>
-        <p>Satisfacción del cliente</p>
+  <div *ngIf="achievements" class="achievements-content">
+    <div class="stats-section">
+      <h2>En Números</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">{{ achievements.clientes }}+</div>
+          <div class="stat-label">Clientes satisfechos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{{ achievements.proyectos }}+</div>
+          <div class="stat-label">Proyectos completados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{{ achievements.productosVendidos }}+</div>
+          <div class="stat-label">Productos vendidos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{{ achievements.satisfaccion }}%</div>
+          <div class="stat-label">Satisfacción del cliente</div>
+        </div>
       </div>
     </div>
 
     <div class="awards-section" *ngIf="achievements.reconocimientos">
       <h2>Reconocimientos</h2>
-      <ul>
-        <li *ngFor="let award of achievements.reconocimientos">{{ award }}</li>
-      </ul>
+      <div class="awards-list">
+        <div *ngFor="let award of achievements.reconocimientos" class="award-card">
+          <h3>{{ award.titulo }}</h3>
+          <div class="award-year">{{ award.anio }}</div>
+          <p>{{ award.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <p>¿Listo para ser nuestro próximo caso de éxito? Descubre cómo podemos transformar tu hogar con nuestra tecnología inteligente.</p>
+      <a routerLink="/contacto" class="cta-button">
+        <i class="fas fa-paper-plane"></i> Contáctanos
+      </a>
     </div>
   </div>
 </section>
