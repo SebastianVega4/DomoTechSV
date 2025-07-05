@@ -1,17 +1,8 @@
+@use "../../../../variables" as *;
 @use "bootstrap/scss/bootstrap" as bs;
-@use "sass:color";
-
-// Variables de tema
-$primary: #2c3e50;
-$secondary: #3498db;
-$accent: #2ecc71;
-$dark: #1a252f;
-$light: #ecf0f1;
-$tech-gradient: linear-gradient(135deg, $secondary 0%, $primary 100%);
-$font-tech: "Orbitron", "Segoe UI", sans-serif;
 
 .header {
-  position: fixed; // fixed para fijar la barra todos los tamaños
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -25,16 +16,12 @@ $font-tech: "Orbitron", "Segoe UI", sans-serif;
   box-shadow: 0 4px 20px rgba($dark, 0.2);
   transition: all 0.3s ease;
   overflow: hidden;
+  width: 100%;
 
   @include bs.media-breakpoint-down(lg) {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
   }
 
-  // Efecto de partículas tecnológicas
   &::before {
     content: "";
     position: absolute;
@@ -56,7 +43,6 @@ $font-tech: "Orbitron", "Segoe UI", sans-serif;
     z-index: -1;
   }
 
-  // Efecto al hacer scroll
   &.scrolled {
     padding: 0.5rem 2rem;
     background: rgba($primary, 0.95);
@@ -108,22 +94,20 @@ $font-tech: "Orbitron", "Segoe UI", sans-serif;
     @include bs.media-breakpoint-down(lg) {
       position: fixed;
       top: 70px;
-      right: auto; // Completamente fuera de la pantalla
-      left: 0; // Cambiado de right a left
+      left: 0;
       width: 100%;
       height: calc(100vh - 70px);
       background: rgba($dark, 0.98);
       backdrop-filter: blur(10px);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); // Animación más suave
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       padding: 1rem 0;
       box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
       z-index: 999;
       overflow-y: auto;
-      transform: translateX(100%); // Oculto usando transform
+      transform: translateX(100%);
 
       &.open {
-        transform: translateX(0); // Visible
-        right: auto;
+        transform: translateX(0);
       }
     }
 
@@ -275,7 +259,6 @@ $font-tech: "Orbitron", "Segoe UI", sans-serif;
     }
   }
 
-  // Overlay para móviles
   .mobile-overlay {
     display: none;
     position: fixed;
@@ -288,7 +271,7 @@ $font-tech: "Orbitron", "Segoe UI", sans-serif;
     z-index: 998;
     opacity: 0;
     transition: opacity 0.3s ease;
-    pointer-events: none; // No captura eventos por defecto
+    pointer-events: none;
 
     &.visible {
       display: block;
@@ -297,47 +280,3 @@ $font-tech: "Orbitron", "Segoe UI", sans-serif;
     }
   }
 }
-
-// Animaciones
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-@keyframes techGlow {
-  0% {
-    box-shadow: 0 0 5px rgba($accent, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba($accent, 0.8);
-  }
-  100% {
-    box-shadow: 0 0 5px rgba($accent, 0.5);
-  }
-}
-
-.float-effect {
-  animation: float 3s ease-in-out infinite;
-}
-
-.glow-effect {
-  animation: techGlow 2s infinite;
-}
-

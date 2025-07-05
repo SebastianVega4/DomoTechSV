@@ -1,5 +1,9 @@
+@use "sass:color";
+@use "../../../../variables" as *;
+@use "../../../../animations" as *;
+
 .footer {
-  background-color: #2c3e50;
+  background-color: $primary;
   color: white;
   padding: 2rem 1rem;
   margin-top: auto;
@@ -15,7 +19,7 @@
     .social-links {
       h3 {
         margin-top: 0;
-        color: #3498db;
+        color: $secondary;
       }
 
       p,
@@ -30,7 +34,7 @@
         transition: color 0.3s;
 
         &:hover {
-          color: #3498db;
+          color: $secondary;
         }
       }
     }
@@ -39,7 +43,7 @@
   .copyright {
     text-align: center;
     padding-top: 1rem;
-    border-top: 1px solid #34495e;
+    border-top: 1px solid color.adjust($primary, $lightness: 10%);
     margin-top: 1rem;
   }
 }

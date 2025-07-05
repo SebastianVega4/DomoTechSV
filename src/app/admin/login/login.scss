@@ -1,13 +1,7 @@
 @use "sass:color";
 @use "bootstrap/scss/bootstrap" as bs;
-
-// Variables modernas
-$primary: #1a237e;
-$secondary: #00bcd4;
-$accent: #ff4081;
-$dark: #212121;
-$light: #f5f5f7;
-$font-tech: "Montserrat", "Segoe UI", sans-serif;
+@use "../../../variables" as *;
+@use "../../../animations" as *;
 
 .login-container {
   max-width: 420px;
@@ -16,6 +10,14 @@ $font-tech: "Montserrat", "Segoe UI", sans-serif;
   background: white;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+  // Cambiar variables alternativas por las principales
+  $primary: $alt-primary;
+  $secondary: $alt-secondary;
+  $accent: $alt-accent;
+  $dark: $alt-dark;
+  $light: $alt-light;
+  $font-tech: $font-alt-tech;
 
   .login-header {
     text-align: center;
@@ -100,7 +102,7 @@ $font-tech: "Montserrat", "Segoe UI", sans-serif;
       background: linear-gradient(
         135deg,
         $primary 0%,
-        darken($secondary, 5%) 100%
+        color.adjust($secondary, $lightness: -5%) 100%
       );
       color: white;
       border: none;

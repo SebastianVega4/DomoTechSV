@@ -1,30 +1,7 @@
 @use "sass:color";
 @use "bootstrap/scss/bootstrap" as bs;
-
-$prefix: "bs-";
-$enable-dark-mode: false;
-
-// Define tus variables personalizadas
-$custom-primary: #2c3e50;
-$custom-secondary: #3498db;
-$custom-accent: #2ecc71;
-$custom-dark: #1a252f;
-$custom-light: #ecf0f1;
-$custom-font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-
-// Sobrescribe variables de Bootstrap ANTES de importar
-$primary: $custom-primary;
-$secondary: $custom-secondary;
-$dark: $custom-dark;
-$font-family-base: $custom-font-family;
-$accent: #2ecc71 !default;
-$light: #ecf0f1 !default;
-
-// Variables derivadas
-$tech-gradient: linear-gradient(135deg, $secondary 0%, $primary 100%);
-
-// Tipografía
-$font-tech: 'Orbitron', 'Segoe UI', sans-serif;
+@use "../../../variables" as *;
+@use "../../../animations" as *;
 
 .about-section {
   max-width: 1200px;
@@ -32,7 +9,6 @@ $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
   padding: 0 1.5rem;
   position: relative;
   
-  // Efecto tecnológico de fondo
   &::before {
     content: '';
     position: absolute;
@@ -146,7 +122,7 @@ $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
       }
 
       p {
-        color: lighten($dark, 15%);
+        color: color.adjust($dark, $lightness: 15%);
         margin-bottom: 0;
         line-height: 1.8;
       }
@@ -209,7 +185,7 @@ $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
         }
 
         p {
-          color: lighten($dark, 20%);
+          background: color.adjust($light, $lightness: -3%);
           margin-bottom: 0;
           line-height: 1.7;
         }
@@ -218,7 +194,7 @@ $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
   }
 
   .contact-info {
-    background: linear-gradient(145deg, $light 0%, darken($light, 3%) 100%);
+    background: linear-gradient(145deg, $light 0%, color.adjust($light, $lightness: -3%) 100%);
     padding: 2.5rem;
     border-radius: 10px;
     margin-top: 3rem;
@@ -272,7 +248,7 @@ $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
             }
             
             span {
-              color: lighten($dark, 15%);
+              color: color.adjust($dark, $lightness: 15%);
             }
           }
         }

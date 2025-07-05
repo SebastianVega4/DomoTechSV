@@ -1,30 +1,7 @@
-@use "sass:color";
+@use "../../../variables" as *;
+@use "../../../variables" as *;
 @use "bootstrap/scss/bootstrap" as bs;
-
-$prefix: "bs-";
-$enable-dark-mode: false;
-
-// Define tus variables personalizadas
-$custom-primary: #2c3e50;
-$custom-secondary: #3498db;
-$custom-accent: #2ecc71;
-$custom-dark: #1a252f;
-$custom-light: #ecf0f1;
-$custom-font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-
-// Sobrescribe variables de Bootstrap ANTES de importar
-$primary: $custom-primary;
-$secondary: $custom-secondary;
-$dark: $custom-dark;
-$font-family-base: $custom-font-family;
-$accent: #2ecc71 !default;
-$light: #ecf0f1 !default;
-
-// Variables derivadas
-$tech-gradient: linear-gradient(135deg, $secondary 0%, $primary 100%);
-
-// Tipografía
-$font-tech: 'Orbitron', 'Segoe UI', sans-serif;
+@use "sass:color";
 
 .achievements-section {
   max-width: 1200px;
@@ -216,7 +193,7 @@ $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
         }
 
         p {
-          color: lighten($dark, 20%);
+          color: color.adjust($dark, $lightness: 20%);
           margin-bottom: 0;
           line-height: 1.7;
         }
@@ -254,7 +231,7 @@ $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
       &:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba($secondary, 0.4);
-        background: linear-gradient(135deg, darken($secondary, 5%) 0%, darken($primary, 5%) 100%);
+        background: linear-gradient(135deg, color.adjust($secondary, $lightness: -5%) 0%, color.adjust($primary, $lightness: -5%) 100%);
       }
       
       i {
