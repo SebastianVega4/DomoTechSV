@@ -1,31 +1,39 @@
-// Configuración inicial
-@use 'sass:math';
-@use 'sass:color';
-@use 'sass:map';
+@use "sass:color";
+@use "bootstrap/scss/bootstrap" as bs;
 
-// Importación de Bootstrap
-@use 'bootstrap/scss/bootstrap' as *;
+$prefix: "bs-";
+$enable-dark-mode: false;
 
-// Variables de tema domótico
-$primary: #2c3e50;
-$secondary: #3498db;
-$accent: #2ecc71;
-$dark: #1a252f;
-$light: #ecf0f1;
-$tech-gradient: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+// Define tus variables personalizadas
+$custom-primary: #2c3e50;
+$custom-secondary: #3498db;
+$custom-accent: #2ecc71;
+$custom-dark: #1a252f;
+$custom-light: #ecf0f1;
+$custom-font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-// Tipografía moderna
-$font-family-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+// Sobrescribe variables de Bootstrap ANTES de importar
+$primary: $custom-primary;
+$secondary: $custom-secondary;
+$dark: $custom-dark;
+$font-family-base: $custom-font-family;
+$accent: #2ecc71 !default;
+$light: #ecf0f1 !default;
+
+// Variables derivadas
+$tech-gradient: linear-gradient(135deg, $secondary 0%, $primary 100%);
+
+// Tipografía
 $font-tech: 'Orbitron', 'Segoe UI', sans-serif;
 
-/* Estilos globales */
+// Estilos globales
 body {
   font-family: $font-family-base;
   margin: 0;
   padding: 0;
   color: $primary;
   line-height: 1.6;
-  background-color: $light;
+  background-color: $custom-light;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -39,14 +47,14 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
-  @include media-breakpoint-down(md) {
+  @include bs.media-breakpoint-down(md) {
     font-size: 2rem;
   }
 }
 
 h2 {
   font-size: 2rem;
-  @include media-breakpoint-down(md) {
+  @include bs.media-breakpoint-down(md) {
     font-size: 1.75rem;
   }
 }
@@ -57,7 +65,7 @@ a {
   transition: all 0.3s ease;
 
   &:hover {
-    color: darken($secondary, 15%);
+    color: color.adjust($secondary, $lightness: -15%);
   }
 }
 
@@ -115,7 +123,11 @@ a {
     color: white;
 
     &:hover {
-      background: linear-gradient(135deg, darken($secondary, 10%) 0%, darken($primary, 10%) 100%);
+      background: linear-gradient(
+        135deg, 
+        color.adjust($secondary, $lightness: -10%) 0%, 
+        color.adjust($primary, $lightness: -10%) 100%
+      );
     }
   }
 
@@ -124,7 +136,7 @@ a {
     color: white;
 
     &:hover {
-      background-color: darken($accent, 10%);
+      background-color: color.adjust($accent, $lightness: -10%);
     }
   }
 
@@ -168,14 +180,94 @@ a {
 .mb-5 { margin-bottom: 3rem; }
 
 // Responsive utilities
-@include media-breakpoint-down(lg) {
+@include bs.media-breakpoint-down(lg) {
   .lg\:text-center { text-align: center; }
 }
 
-@include media-breakpoint-down(md) {
+@include bs.media-breakpoint-down(md) {
   .md\:flex-column { flex-direction: column; }
 }
 
-@include media-breakpoint-down(sm) {
+@include bs.media-breakpoint-down(sm) {
   .sm\:text-sm { font-size: 0.875rem; }
+}
+
+app-product-card {
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+    
+    .product-image {
+      height: 220px;
+      object-fit: cover;
+      background: linear-gradient(145deg, $light 0%, darken($light, 5%) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+    }
+    
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      
+      .product-title {
+        font-weight: 600;
+        color: $dark;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+      }
+      
+      .product-category {
+        color: $secondary;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      
+      .product-description {
+        color: lighten($dark, 20%);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+      
+      .product-price {
+        font-weight: 700;
+        color: $primary;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+      }
+    }
+    
+    .card-footer {
+      background: transparent;
+      border-top: none;
+      padding: 0 1.5rem 1.5rem;
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  }
 }

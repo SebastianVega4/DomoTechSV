@@ -21,4 +21,15 @@ export class HomeComponent {
       this.featuredProducts = products;
     });
   }
+  getParticleStyle() {
+  const size = Math.random() * 10 + 5;
+  return `
+    width: ${size}px;
+    height: ${size}px;
+    left: ${Math.random() * 100}%;
+    top: ${Math.random() * 100}%;
+    opacity: ${Math.random() * 0.5 + 0.3};
+    animation: float ${Math.random() * 10 + 5}s infinite ease-in-out ${Math.random() * 5}s;
+  `;
+}
 }

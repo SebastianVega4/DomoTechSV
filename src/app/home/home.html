@@ -1,23 +1,45 @@
 <section class="hero">
+  <div class="tech-overlay"></div>
+  <div class="grid-pattern"></div>
   <div class="hero-content">
-    <h1>Bienvenido a DomoTechSV</h1>
-    <p class="tagline">Tu hogar a la palma de tu mano</p>
+    <h1 class="float-effect">Bienvenido a DomoTechSV</h1>
+    <p class="tagline">Transformamos tu hogar en un espacio inteligente con tecnología de vanguardia</p>
     <div class="cta-buttons">
-      <a routerLink="/productos/domotica" class="btn btn-primary">Explora Productos Domóticos</a>
-      <a routerLink="/productos/tecnologia" class="btn btn-secondary">Ver Accesorios Tecnológicos</a>
+      <a routerLink="/productos/domotica" class="btn btn-primary pulse-effect">
+        <i class="fas fa-home"></i> Explora Productos Domóticos
+      </a>
+      <a routerLink="/productos/tecnologia" class="btn btn-secondary pulse-effect">
+        <i class="fas fa-robot"></i> Ver Accesorios Tecnológicos
+      </a>
     </div>
   </div>
+  
+  <!-- Efecto de partículas -->
+  <div *ngFor="let _ of [].constructor(15)" class="tech-particle" 
+       [style]="getParticleStyle()"></div>
 </section>
 
 <section class="featured-products">
-  <h2>Productos Destacados</h2>
+  <div class="grid-pattern"></div>
+  <h2>Nuestros Productos Destacados</h2>
   <div class="products-grid">
-    <app-product-card *ngFor="let product of featuredProducts" [product]="product"></app-product-card>
+    <app-product-card *ngFor="let product of featuredProducts" [product]="product" 
+                      class="card-effect"></app-product-card>
+  </div>
+  <div class="text-center mt-5">
+    <a routerLink="/productos" class="btn btn-outline">
+      <i class="fas fa-arrow-right"></i> Ver todos los productos
+    </a>
   </div>
 </section>
 
 <section class="about-section">
-  <h2>¿Qué es DomoTechSV?</h2>
-  <p>DomoTechSV es tu solución integral para la automatización del hogar. Ofrecemos productos de domótica de alta calidad que te permiten controlar y monitorear tu hogar desde cualquier lugar.</p>
-  <a routerLink="/que-es-domotica" class="btn btn-outline">Aprende más sobre domótica</a>
+  <div class="tech-overlay"></div>
+  <div class="container">
+    <h2>Innovación Domótica para tu Hogar</h2>
+    <p>En DomoTechSV combinamos tecnología avanzada con diseño intuitivo para ofrecerte soluciones inteligentes que simplifican tu vida diaria. Desde iluminación automatizada hasta sistemas de seguridad integrados, nuestra tecnología aprende de tus hábitos para ofrecerte la máxima comodidad y eficiencia energética.</p>
+    <a routerLink="/que-es-domotica" class="btn btn-outline">
+      <i class="fas fa-info-circle"></i> Descubre cómo funciona
+    </a>
+  </div>
 </section>
