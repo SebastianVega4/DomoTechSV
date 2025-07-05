@@ -14,7 +14,7 @@ import { Product } from '../core/models/product.model';
 export class HomeComponent {
   featuredProducts: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.productService.getFeaturedProducts().subscribe(products => {
@@ -22,8 +22,8 @@ export class HomeComponent {
     });
   }
   getParticleStyle() {
-  const size = Math.random() * 10 + 5;
-  return `
+    const size = Math.random() * 10 + 5;
+    return `
     width: ${size}px;
     height: ${size}px;
     left: ${Math.random() * 100}%;
@@ -31,5 +31,5 @@ export class HomeComponent {
     opacity: ${Math.random() * 0.5 + 0.3};
     animation: float ${Math.random() * 10 + 5}s infinite ease-in-out ${Math.random() * 5}s;
   `;
-}
+  }
 }

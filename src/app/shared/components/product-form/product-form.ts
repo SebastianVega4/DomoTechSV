@@ -13,9 +13,9 @@ import { NewProduct, Product } from '../../../core/models/product.model';
 export class ProductFormComponent {
   @Input() product!: Product | NewProduct;
   @Output() submitProduct = new EventEmitter<Product | NewProduct>();
-  
+
   nichos = ['domotica', 'tecnologia', 'segunda-mano'];
-  categorias = ['Aistentes', 'TomaCorriente','Interruptor', 'Iluminacion', 'Pin', 'Rele', 'Reloj', 'Control_Remoto', 'Audifonos', 'Airpots', 'Adaptador', 'Mause', 'Otro'];
+  categorias = ['Aistentes', 'Aspiradora', 'TomaCorriente', 'Interruptor', 'Iluminacion', 'Pin', 'Rele', 'Reloj', 'Control_Remoto', 'Audifonos', 'Airpots', 'Adaptador', 'Mause', 'Otro'];
 
   submit() {
     this.submitProduct.emit(this.product);

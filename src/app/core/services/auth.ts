@@ -5,7 +5,7 @@ import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth) { }
 
   async login(email: string, password: string): Promise<boolean> {
     try {

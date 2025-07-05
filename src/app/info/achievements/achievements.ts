@@ -12,7 +12,7 @@ import { AchievementsService } from '../../core/services/achievements';
 export class AchievementsComponent {
   achievements: any = {};
 
-  constructor(private achievementsService: AchievementsService) {}
+  constructor(private achievementsService: AchievementsService) { }
 
   ngOnInit() {
     this.achievementsService.getAchievements().subscribe(data => {

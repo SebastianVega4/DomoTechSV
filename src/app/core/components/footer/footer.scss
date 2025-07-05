@@ -11,13 +11,15 @@
     gap: 2rem;
     margin-bottom: 1rem;
 
-    .contact-info, .social-links {
+    .contact-info,
+    .social-links {
       h3 {
         margin-top: 0;
         color: #3498db;
       }
 
-      p, a {
+      p,
+      a {
         margin: 0.5rem 0;
         color: white;
       }

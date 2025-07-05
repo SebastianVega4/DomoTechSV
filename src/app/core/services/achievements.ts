@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AchievementsService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) { }
 
   getAchievements(): Observable<any> {
     const achievementsRef = doc(this.firestore, 'logros/estadisticas');

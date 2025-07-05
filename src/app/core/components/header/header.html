@@ -6,63 +6,67 @@
     </a>
   </div>
 
-  <!-- Botón de menú móvil -->
   <button class="mobile-menu-btn" (click)="toggleMenu()" [class.open]="menuOpen">
     <i class="fas fa-bars menu-icon"></i>
     <i class="fas fa-times close-icon"></i>
   </button>
 
-  <!-- Overlay móvil -->
   <div class="mobile-overlay" [class.visible]="menuOpen" (click)="toggleMenu()"></div>
 
-  <!-- Menú de navegación -->
   <nav class="nav-menu" [class.open]="menuOpen">
     <ul class="nav-list">
       <li class="nav-item">
-        <a routerLink="/" 
-           [class.active]="isActive('/')">
+        <a routerLink="/"
+           [class.active]="isActive('/')"
+           (click)="closeMenuOnNavigation()">
           <i class="fas fa-home"></i>
           <span>Inicio</span>
         </a>
       </li>
       <li class="nav-item">
-        <a routerLink="/productos/domotica" 
-           [class.active]="isActive('/productos/domotica')">
+        <a routerLink="/productos/domotica"
+           [class.active]="isActive('/productos/domotica')"
+           (click)="closeMenuOnNavigation()">
           <i class="fas fa-home-lg-alt"></i>
           <span>Productos Domóticos</span>
         </a>
       </li>
       <li class="nav-item">
-        <a routerLink="/productos/tecnologia" 
-           [class.active]="isActive('/productos/tecnologia')">
+        <a routerLink="/productos/tecnologia"
+           [class.active]="isActive('/productos/tecnologia')"
+           (click)="closeMenuOnNavigation()">
           <i class="fas fa-laptop-code"></i>
           <span>Productos Tecnológicos</span>
         </a>
       </li>
       <li class="nav-item">
-        <a routerLink="/productos/segunda-mano" 
-           [class.active]="isActive('/productos/segunda-mano')">
+        <a routerLink="/productos/segunda-mano"
+           [class.active]="isActive('/productos/segunda-mano')"
+           (click)="closeMenuOnNavigation()">
           <i class="fas fa-recycle"></i>
           <span>Segunda Mano</span>
         </a>
       </li>
       <li class="nav-item">
-        <a routerLink="/que-es-domotica" 
-           [class.active]="isActive('/que-es-domotica')">
+        <a routerLink="/que-es-domotica"
+           [class.active]="isActive('/que-es-domotica')"
+           (click)="closeMenuOnNavigation()">
           <i class="fas fa-question-circle"></i>
           <span>¿Qué es la Domótica?</span>
         </a>
       </li>
       <li class="nav-item">
-        <a routerLink="/about" 
-           [class.active]="isActive('/about')">
+        <a routerLink="/about"
+           [class.active]="isActive('/about')"
+           (click)="closeMenuOnNavigation()">
           <i class="fas fa-users"></i>
           <span>Sobre Nosotros</span>
         </a>
       </li>
       <li class="nav-item">
-        <a routerLink="/logros" 
-           [class.active]="isActive('/logros')">
+        <a routerLink="/logros"
+           [class.active]="isActive('/logros')"
+           (click)="closeMenuOnNavigation()">
           <i class="fas fa-trophy"></i>
           <span>Logros</span>
         </a>

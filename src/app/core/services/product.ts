@@ -8,12 +8,12 @@ import { query, where } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class ProductService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) { }
 
   getProducts(nicho?: string, categoria?: string): Observable<Product[]> {
     const productsRef = collection(this.firestore, 'productos');
     let q = query(productsRef);
-    
+
     if (nicho) {
       q = query(productsRef, where('nicho', '==', nicho));
     }

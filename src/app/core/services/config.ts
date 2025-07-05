@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) { }
 
   getGlobalConfig(): Observable<any> {
     const configRef = doc(this.firestore, 'configuracion/general');

@@ -7,25 +7,25 @@ $secondary: #00bcd4;
 $accent: #ff4081;
 $dark: #212121;
 $light: #f5f5f7;
-$font-tech: 'Montserrat', 'Segoe UI', sans-serif;
+$font-tech: "Montserrat", "Segoe UI", sans-serif;
 
 .product-card {
   background: white;
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   position: relative;
-  border: 1px solid rgba(0,0,0,0.05);
-  
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
     .product-image img {
       transform: scale(1.03);
     }
-    
+
     .product-actions .btn-details {
       background: $accent;
     }
@@ -40,13 +40,13 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    
+
     img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
       transition: transform 0.4s ease;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     }
 
     .badge-container {
@@ -66,7 +66,7 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
       border-radius: 12px;
       font-weight: 600;
       font-size: 0.75rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       align-self: flex-end;
     }
 
@@ -77,7 +77,7 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
       border-radius: 12px;
       font-weight: 600;
       font-size: 0.75rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -86,7 +86,7 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
     display: flex;
     flex-direction: column;
     height: calc(100% - 240px);
-    
+
     .product-name {
       margin: 0 0 0.5rem;
       font-size: 1.1rem;
@@ -125,7 +125,7 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
       display: flex;
       align-items: center;
       gap: 8px;
-      
+
       .original-price {
         text-decoration: line-through;
         color: rgba($dark, 0.4);
@@ -136,9 +136,9 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
         font-size: 1.3rem;
         font-weight: 700;
         color: $dark;
-        
+
         &::before {
-          content: '$';
+          content: "$";
           font-size: 0.8em;
           margin-right: 2px;
         }
@@ -159,7 +159,7 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
         font-weight: 500;
         font-size: 0.9rem;
         transition: all 0.2s ease;
-        
+
         &:hover {
           transform: translateY(-1px);
           box-shadow: 0 2px 8px rgba($secondary, 0.3);
@@ -167,14 +167,18 @@ $font-tech: 'Montserrat', 'Segoe UI', sans-serif;
       }
     }
   }
-  
+
   .tech-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba($secondary, 0.03) 0%, transparent 100%);
+    background: linear-gradient(
+      135deg,
+      rgba($secondary, 0.03) 0%,
+      transparent 100%
+    );
     pointer-events: none;
     z-index: 1;
   }

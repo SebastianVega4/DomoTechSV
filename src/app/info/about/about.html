@@ -1,10 +1,10 @@
 <section class="about-section">
   <h1>Sobre Nosotros</h1>
-  
+
   <div *ngIf="config" class="about-content">
     <h2>{{ config.nombreEmpresa }}</h2>
     <p class="about-description">{{ config.descripcionEmpresa }}</p>
-    
+
     <div class="mission-vision">
       <div class="mission">
         <h3>Misión</h3>
@@ -64,7 +64,7 @@
       <h2>Nuestro Equipo</h2>
       <div class="team-grid">
         <div *ngFor="let member of config.equipo" class="team-member">
-          <img [src]="member.foto" [alt]="member.nombre" class="member-image">
+          <img [src]="member.foto" [alt]="member.nombre" class="member-image" />
           <h3>{{ member.nombre }}</h3>
           <p>{{ member.puesto }}</p>
         </div>

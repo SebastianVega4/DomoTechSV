@@ -22,7 +22,7 @@ export class AdminPanelComponent {
   searchTerm = '';
 
   constructor(
-    public authService: AuthService, 
+    public authService: AuthService,
     private productService: ProductService
   ) {
     this.loadProducts();
@@ -91,21 +91,21 @@ export class AdminPanelComponent {
       this.filteredProducts = [...this.products];
       return;
     }
-    
+
     const term = this.searchTerm.toLowerCase();
-    this.filteredProducts = this.products.filter(p => 
-      p.nombre.toLowerCase().includes(term) || 
+    this.filteredProducts = this.products.filter(p =>
+      p.nombre.toLowerCase().includes(term) ||
       p.categoria.toLowerCase().includes(term) ||
       p.descripcion.toLowerCase().includes(term)
     );
   }
 
   toggleProductDetail(productId: string) {
-  // Si ya está seleccionado, no hagas nada (para evitar cerrarlo al hacer clic en el formulario)
-  if (this.selectedProductId === productId) return;
-  
-  this.selectedProductId = productId;
-}
+    // Si ya está seleccionado, no hagas nada (para evitar cerrarlo al hacer clic en el formulario)
+    if (this.selectedProductId === productId) return;
+
+    this.selectedProductId = productId;
+  }
 
   logout() {
     this.authService.logout();

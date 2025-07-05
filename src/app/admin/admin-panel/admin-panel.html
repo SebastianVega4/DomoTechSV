@@ -8,45 +8,59 @@
 
   <section class="product-management">
     <h2>Gestión de Productos</h2>
-    
+
     <div class="search-bar">
-      <input type="text" [(ngModel)]="searchTerm" placeholder="Buscar productos..." 
-             (input)="filterProducts()">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Buscar productos..."
+        (input)="filterProducts()"
+      />
       <button (click)="showAddForm = !showAddForm" class="btn btn-primary">
-        <i class="fas fa-plus"></i> {{ showAddForm ? 'Cancelar' : 'Añadir Producto' }}
+        <i class="fas fa-plus"></i> {{ showAddForm ? 'Cancelar' : 'Añadir
+        Producto' }}
       </button>
     </div>
 
     <!-- Formulario para añadir nuevo producto -->
     <div *ngIf="showAddForm" class="product-form-container">
       <h3>Añadir Nuevo Producto</h3>
-      <app-product-form 
+      <app-product-form
         [product]="newProduct"
-        (submitProduct)="addProduct($event)">
+        (submitProduct)="addProduct($event)"
+      >
       </app-product-form>
     </div>
-    
+
     <!-- Lista compacta de productos -->
     <div class="product-list">
-    <div *ngFor="let product of filteredProducts" class="product-card" 
-         [class.selected]="selectedProductId === product.id">
-      <div class="product-header" (click)="toggleProductDetail(product.id)">
-        <span class="product-name">{{ product.nombre }}</span>
-        <span class="product-price">{{ product.precio | currency }}</span>
-        <span class="product-category">{{ product.categoria }}</span>
-      </div>
-      
-      <!-- Vista detallada al hacer click -->
-      <div *ngIf="selectedProductId === product.id" class="product-detail" (click)="$event.stopPropagation()">
-        <app-product-form 
-          [product]="product"
-          (submitProduct)="updateProduct($event)">
-        </app-product-form>
-        <button (click)="deleteProduct(product.id)" class="btn btn-danger">
-          <i class="fas fa-trash"></i> Eliminar Producto
-        </button>
+      <div
+        *ngFor="let product of filteredProducts"
+        class="product-card"
+        [class.selected]="selectedProductId === product.id"
+      >
+        <div class="product-header" (click)="toggleProductDetail(product.id)">
+          <span class="product-name">{{ product.nombre }}</span>
+          <span class="product-price">{{ product.precio | currency }}</span>
+          <span class="product-category">{{ product.categoria }}</span>
+        </div>
+
+        <!-- Vista detallada al hacer click -->
+        <div
+          *ngIf="selectedProductId === product.id"
+          class="product-detail"
+          (click)="$event.stopPropagation()"
+        >
+          <app-product-form
+            [product]="product"
+            (submitProduct)="updateProduct($event)"
+          >
+          </app-product-form>
+          <button (click)="deleteProduct(product.id)" class="btn btn-danger">
+            <i class="fas fa-trash"></i> Eliminar Producto
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   </section>
 </div>

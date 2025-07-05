@@ -20,7 +20,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
