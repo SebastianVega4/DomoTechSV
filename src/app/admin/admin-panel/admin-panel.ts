@@ -20,6 +20,9 @@ export class AdminPanelComponent {
   selectedProductId: string | null = null;
   showAddForm = false;
   searchTerm = '';
+  notificationMessage: string = '';
+  showNotification: boolean = false;
+  notificationTimeout: any;
 
   constructor(
     public authService: AuthService,
@@ -61,8 +64,11 @@ export class AdminPanelComponent {
       await this.productService.addProduct(productData);
       this.newProduct = this.getEmptyProduct();
       this.loadProducts();
+      this.showNotificationMessage('Producto añadido correctamente');
+      this.showAddForm = false;
     } catch (error) {
       console.error('Error adding product:', error);
+      this.showNotificationMessage('Error al añadir el producto');
     }
   }
 
@@ -71,8 +77,10 @@ export class AdminPanelComponent {
       try {
         await this.productService.updateProduct(productData.id, productData);
         this.loadProducts();
+        this.showNotificationMessage('Producto actualizado correctamente');
       } catch (error) {
         console.error('Error updating product:', error);
+        this.showNotificationMessage('Error al actualizar el producto');
       }
     }
   }
@@ -81,8 +89,11 @@ export class AdminPanelComponent {
     try {
       await this.productService.deleteProduct(productId);
       this.loadProducts();
+      this.selectedProductId = null;
+      this.showNotificationMessage('Producto eliminado correctamente');
     } catch (error) {
       console.error('Error deleting product:', error);
+      this.showNotificationMessage('Error al eliminar el producto');
     }
   }
 
@@ -109,5 +120,17 @@ export class AdminPanelComponent {
 
   logout() {
     this.authService.logout();
+  }
+  private showNotificationMessage(message: string) {
+    if (this.notificationTimeout) {
+      clearTimeout(this.notificationTimeout);
+    }
+
+    this.notificationMessage = message;
+    this.showNotification = true;
+
+    this.notificationTimeout = setTimeout(() => {
+      this.showNotification = false;
+    }, 3000);
   }
 }

@@ -109,7 +109,7 @@ a {
     color: white;
 
     &:hover {
-      background-color: color.adjust($accent, $lightness: -10%);
+      background: color.adjust($accent, $lightness: -10%);
     }
   }
 
